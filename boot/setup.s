@@ -33,8 +33,9 @@ start:
 ! ok, the read went well so we get current cursor position and save it for
 ! posterity.
 
-	mov	ax,#INITSEG	! this is done in bootsect already, but...
+	mov	ax,cs
 	mov	ds,ax
+	mov	es,ax
 
 	! write we are in setup 
 	mov	ah,#0x03		! read cursor pos
@@ -46,7 +47,10 @@ start:
 	mov	bp,#msg2
 	mov	ax,#0x1301		! write string, move cursor
 	int	0x10
-	
+
+
+	mov	ax,#INITSEG	! this is done in bootsect already, but...
+	mov	ds,ax
 	mov	ah,#0x03	! read cursor pos
 	xor	bh,bh
 	int	0x10		! save it in known place, con_init fetches
