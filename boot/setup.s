@@ -233,7 +233,7 @@ gdt_48:
 	.word	512+gdt,0x9	! gdt base = 0X9xxxx
 	
 
-msg1:
+msg2:
 	.byte 13,10
 	.ascii "Now we are in setup..."
 	.byte 13,10,13,10
